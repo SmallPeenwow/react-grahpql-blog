@@ -21,14 +21,10 @@ const QUERY = gql`{
       }
     }
     coverPhoto {
-      publishedAt 
-      createBy {
-        id
-      }
       url
     }
   }
-}`
+}`;
 
 export async function getStaticProps() {
   const {postPractices} = await graphcms.request(QUERY);
