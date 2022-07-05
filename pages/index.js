@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
+import BlogCard from "../components/BlogCard"
 
-const graphcms = new GraphQLClient('graphcms Content API')
+const graphcms = new GraphQLClient('https://api-eu-west-2.graphcms.com/v2/cl56rqj04433501ughxx94tiz/master')
 
 const QUERY = gql`{
   postPractices {
@@ -23,9 +24,8 @@ const QUERY = gql`{
       publishedAt 
       createBy {
         id
-      },
+      }
       url
-      
     }
   }
 }`
@@ -37,10 +37,11 @@ export async function getStaticProps() {
     props: {
       postPractices,
     },
+    revalidate: 60,
   };
 }
 
-export default function Home() {
+export default function Home({postPractices}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -50,7 +51,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-
+        {postPractices.map((post) => (
+          <BlogCard title={post.title} author={post.author} coverPhoto={post.coverPhoto} key={post.key} datePublished={post.datePublished} slug={post.slug} />
+        ))}
       </main>
 
     </div>
