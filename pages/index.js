@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
 import BlogCard from "../components/BlogCard"
 
-const graphcms = new GraphQLClient('https://api-eu-west-2.graphcms.com/v2/cl56rqj04433501ughxx94tiz/master')
+const graphcms = new GraphQLClient('graphcms Content Api')
 
 const QUERY = gql`{
   postPractices {
@@ -21,7 +21,11 @@ const QUERY = gql`{
       }
     }
     coverPhoto {
-      url
+      publishedAt
+        createdBy {
+          id
+        }
+        url
     }
   }
 }`;
