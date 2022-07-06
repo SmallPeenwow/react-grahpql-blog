@@ -46,7 +46,7 @@ export async function getStaticProps({ params }) {
     const slug = params.slug;
 
     const data = await graphcms.request(QUERY, { slug });
-    const postPractices = data.postPractice;
+    const postPractice = data.postPractice;
 
     return {
         props: {
@@ -59,7 +59,7 @@ export async function getStaticProps({ params }) {
 export default function BlogPost({ postPractice }) {
     return(
         <main className={styles.blog}>
-            <img src={postPractice.coverPhoto.url} classNamej={styles.cover} alt={postPractice.title} />
+            <img src={postPractice.coverPhoto.url} className={styles.cover} alt={postPractice.title} />
             <div className={styles.title}>
                 <div className={styles.authdetails}>
                     <img src={postPractice.author.avatar.url} alt={postPractice.author.name} />

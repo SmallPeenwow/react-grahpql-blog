@@ -4,7 +4,7 @@ import styles from "../styles/BlogCard.module.css"
 export default function BlogCard({ title, author, coverPhoto, datePublished, slug }) {
     return (
         <div className={styles.card}>
-            <Link href={`/postPractices/${slug}`}>
+            <Link href={'/posts/' + slug}>
                 <div className={styles.imgContainer}>
                     <img src={coverPhoto.url} alt="blog post cover photo" />
                 </div>
